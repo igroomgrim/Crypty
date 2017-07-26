@@ -23,6 +23,7 @@
   "dependencies": {
     "@line/bot-sdk": "^2.0.0",
     "body-parser": "^1.15.2",
+    "cron": "^1.2.1",
     "express": "^4.14.0",
     "request": "^2.78.0",
     "request-promise": "^4.1.1"
