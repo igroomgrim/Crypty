@@ -8,7 +8,7 @@ const app = express()
 var rp = require('request-promise');
 var cronJob = require('cron').CronJob;
 
-const LINENotifyToken = ''
+const LINENotifyToken = process.env.LINENotifyToken
 const OMGPairID = '26'
 const BTCPairID = '1'
 const ETHPairID = '21'
@@ -23,8 +23,7 @@ app.get('/', function (req, res) {
   res.send('Meeaaww');
 })
 
-app.get('/publish', function (req, res) {
-  publish();
+app.get('/meaw', function (req, res) {
   res.status(200).send('Meaaawww');
 })
 
