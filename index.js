@@ -96,10 +96,10 @@ function notifyToGroup( omg, btc, eth ) {
 
   rp(options)
     .then(function ( result ) {
-        console.log('publish success')
+        console.log('publish success');
     })
     .catch(function (err) {
-        console.log()
+        console.log(err);
     });
 }
 
