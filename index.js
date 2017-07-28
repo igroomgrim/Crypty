@@ -24,6 +24,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/meaw', function (req, res) {
+  publish();
   res.status(200).send('Meaaawww');
 })
 
