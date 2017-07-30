@@ -12,6 +12,7 @@ const LINENotifyToken = process.env.LINENotifyToken
 const OMGPairID = '26'
 const BTCPairID = '1'
 const ETHPairID = '21'
+const ZECPairID = '8'
 
 app.set('port', (process.env.PORT || config.PORT))
 
@@ -41,22 +42,23 @@ function publish() {
         let omgPair = marketdata[OMGPairID];
         let btcPair = marketdata[BTCPairID];
         let ethPair = marketdata[ETHPairID];
+        let zecPair = marketdata[ZECPairID];
 
-        notifyToGroup(omgPair, btcPair, ethPair);
+        notifyToGroup(omgPair, btcPair, ethPair, zecPair);
     })
     .catch(function (err) {
         console.log(err);
     });
 }
 
-function messageGenerator( omg, btc, eth ) {
+function messageGenerator( omg, btc, eth, zec ) {
   let change = omg['change'];
   let lastPrice = omg['last_price'];
   let volumeIn24HR = omg['volume_24hours'];
   let volumeBids = omg['orderbook']['bids'];
   let volumeAsks = omg['orderbook']['asks'];
   
-  let omglastPriceMSG = `Last price : ${lastPrice} THB\n`;
+  let omglastPriceMSG = `1 OMG : ${lastPrice} THB\n`;
   let omgChangeMSG = `Change : ${change}%\n`;
   let omgVolume24MSG = `Volume24HR : ${volumeIn24HR} OMG\n`;
   let omgBidsMSG = `Highest buy: ${volumeBids.highbid} THB\n`;
@@ -64,18 +66,21 @@ function messageGenerator( omg, btc, eth ) {
 
   let spliter = '- - - - - - - - - - - - - -\n'
 
-  let btcLastPriceMSG = `BTC : ${btc.last_price} THB\n`;
-  let ethLastPriceMSG = `ETH : ${eth.last_price} THB\n`
+  let btcLastPriceMSG = `1 BTC : ${btc.last_price} THB\n`;
+  let ethLastPriceMSG = `1 ETH : ${eth.last_price} THB\n`;
+
+  let zecPrice = (btc.last_price * zec.last_price).toFixed(2);
+  let zecLastPriceMSG = `1 ZEC : ${zecPrice} THB\n`
 
   let theEnd = '≧◡≦';
 
   return `✿OMG✿\n` + omglastPriceMSG + omgChangeMSG + omgVolume24MSG 
-  + omgBidsMSG + omgAsksMSG + spliter + btcLastPriceMSG + ethLastPriceMSG
+  + omgBidsMSG + omgAsksMSG + spliter + btcLastPriceMSG + ethLastPriceMSG + zecLastPriceMSG
   + theEnd;
 }
 
-function notifyToGroup( omg, btc, eth ) {
-  var message = messageGenerator(omg, btc, eth);
+function notifyToGroup( omg, btc, eth, zec ) {
+  var message = messageGenerator(omg, btc, eth, zec);
 
   var headers = {
     'User-Agent':       'AzukiChan/0.0.1',
@@ -93,7 +98,7 @@ function notifyToGroup( omg, btc, eth ) {
        'message': message
     }
   }
-
+  
   rp(options)
     .then(function ( result ) {
         console.log('publish success');
