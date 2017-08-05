@@ -9,6 +9,7 @@ var rp = require('request-promise');
 var cronJob = require('cron').CronJob;
 
 const LINENotifyToken = process.env.LINENotifyToken
+const LINENotifySIGTToken = process.env.LINENotifySIGTToken
 const OMGPairID = '26'
 const BTCPairID = '1'
 const ETHPairID = '21'
@@ -30,6 +31,11 @@ app.get('/meaw', function (req, res) {
 })
 
 function publish() {
+  publishOMG()
+  publishSIGT()
+}
+
+function publishOMG() {
   var bxOptions = {
     uri: 'https://bx.in.th/api/',
     json: true
@@ -45,6 +51,22 @@ function publish() {
         let zecPair = marketdata[ZECPairID];
 
         notifyToGroup(omgPair, btcPair, ethPair, zecPair);
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
+}
+
+function publishSIGT() {
+  var sigtOptions = {
+    uri: 'https://api.coinmarketcap.com/v1/ticker/signatum/',
+    json: true
+  };
+
+  rp(sigtOptions)
+    .then(function ( sigt ) {
+        console.log(sigt[0]);
+        notifyToSIGTGroup(sigt[0])
     })
     .catch(function (err) {
         console.log(err);
@@ -79,6 +101,11 @@ function messageGenerator( omg, btc, eth, zec ) {
   + theEnd;
 }
 
+function messageSIGTGenerator( sigt ) {
+  let price_usd = ( sigt.price_usd * 33.28 ) 
+  return `✿SIGT✿\n` + `1 SIGT : ${price_usd} THB\n`
+}
+
 function notifyToGroup( omg, btc, eth, zec ) {
   var message = messageGenerator(omg, btc, eth, zec);
 
@@ -93,6 +120,35 @@ function notifyToGroup( omg, btc, eth, zec ) {
     'headers': headers,
     'auth': {
        'bearer': LINENotifyToken
+    },
+    'form': {
+       'message': message
+    }
+  }
+  
+  rp(options)
+    .then(function ( result ) {
+        console.log('publish success');
+    })
+    .catch(function (err) {
+        console.log(err);
+    });
+}
+
+function notifyToSIGTGroup( sigt ) {
+  var message = messageSIGTGenerator(sigt);
+
+  var headers = {
+    'User-Agent':       'AzukiChan/0.0.1',
+    'Content-Type':     'application/x-www-form-urlencoded'
+  }
+
+  var options = {
+    'url': 'https://notify-api.line.me/api/notify',
+    'method': 'POST',
+    'headers': headers,
+    'auth': {
+       'bearer': LINENotifySIGTToken
     },
     'form': {
        'message': message
