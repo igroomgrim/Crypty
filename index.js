@@ -103,7 +103,7 @@ function messageGenerator( omg, btc, eth, zec ) {
 
 function messageSIGTGenerator( sigt ) {
   let price_usd = ( sigt.price_usd * 33.28 ) 
-  return `✿SIGT✿\n` + `1 SIGT : ${price_usd} THB\n`
+  return `✿SIGT✿\n` + `1 SIGT\n${price_usd} THB\n` + `${sigt.price_btc} BTC\n` + `------------`
 }
 
 function notifyToGroup( omg, btc, eth, zec ) {
