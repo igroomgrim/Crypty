@@ -31,7 +31,7 @@ app.get('/meaw', function (req, res) {
 })
 
 function publish() {
-  // publishOMG()
+  publishOMG()
   publishSIGT()
 }
 
