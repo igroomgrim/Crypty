@@ -32,7 +32,7 @@ app.get('/meaw', function (req, res) {
 
 function publish() {
   publishOMG()
-  publishSIGT()
+  // publishSIGT()
 }
 
 function publishOMG() {
@@ -43,7 +43,7 @@ function publishOMG() {
 
   rp(bxOptions)
     .then(function ( marketdata ) {
-        console.log(marketdata[OMGPairID]);
+        // console.log(marketdata[OMGPairID]);
 
         let omgPair = marketdata[OMGPairID];
         let btcPair = marketdata[BTCPairID];
@@ -86,7 +86,7 @@ function messageGenerator( omg, btc, eth, zec ) {
   let omgBidsMSG = `Highest buy: ${volumeBids.highbid} THB\n`;
   let omgAsksMSG = `Lowest sell: ${volumeAsks.highbid} THB\n`;
 
-  let spliter = '- - - - - - - - - - - - - -\n'
+  let spliter = '- - - - - - - - - -\n'
 
   let btcLastPriceMSG = `1 BTC : ${btc.last_price} THB\n`;
   let ethLastPriceMSG = `1 ETH : ${eth.last_price} THB\n`;
@@ -96,9 +96,13 @@ function messageGenerator( omg, btc, eth, zec ) {
 
   let theEnd = '≧◡≦';
 
+  return omglastPriceMSG + omgAsksMSG + omgBidsMSG + spliter
+
+  /*
   return `✿OMG✿\n` + omglastPriceMSG + omgChangeMSG + omgVolume24MSG 
   + omgBidsMSG + omgAsksMSG + spliter + btcLastPriceMSG + ethLastPriceMSG + zecLastPriceMSG
   + theEnd;
+  */
 }
 
 function messageSIGTGenerator( sigt ) {
@@ -109,6 +113,8 @@ function messageSIGTGenerator( sigt ) {
 function notifyToGroup( omg, btc, eth, zec ) {
   var message = messageGenerator(omg, btc, eth, zec);
 
+  console.log(message)
+  /*
   var headers = {
     'User-Agent':       'AzukiChan/0.0.1',
     'Content-Type':     'application/x-www-form-urlencoded'
@@ -133,6 +139,7 @@ function notifyToGroup( omg, btc, eth, zec ) {
     .catch(function (err) {
         console.log(err);
     });
+    */
 }
 
 function notifyToSIGTGroup( sigt ) {
@@ -168,7 +175,7 @@ app.listen(app.get('port'), () => {
   console.log(`Running Crypty on port : ${app.get('port')}`)
   
   var job = new cronJob({
-    cronTime: '0 */20 * * * *',
+    cronTime: '*/15 * * * * *',
     onTick: function() {
       // Publish every 20 min
       publish();
