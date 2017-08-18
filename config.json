@@ -1,3 +1,6 @@
 {
+    "BX_PUBLIC_API_ENDPOINT": "https://bx.in.th/api/",
+	"CMK_API_ENDPOINT": "https://api.coinmarketcap.com/v1/ticker/",
+	"LINE_NOTIFY_API_ENDPOINT": "https://notify-api.line.me/api/notify",
     "PORT": 5000
 }
