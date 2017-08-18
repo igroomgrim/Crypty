@@ -3,6 +3,7 @@
 const config = require('./config')
 const httpservice = require('./httpservice')
 
+const OMGPairID = 'omisego'
 const SIGTPairID = 'signatum'
 const DASHPairID = 'dash'
 const ZRXPairID = '0x'
@@ -11,7 +12,7 @@ const PAYPairID = 'tenx'
 
 module.exports = {
   compress (cmkData) {
-    var filterPairIDs = [SIGTPairID, DASHPairID, ZRXPairID, CVCPairID, PAYPairID]
+    var filterPairIDs = [OMGPairID, SIGTPairID, DASHPairID, ZRXPairID, CVCPairID, PAYPairID]
     return cmkData.filter(function (item) {
       return filterPairIDs.indexOf(item.id) > -1
     })
