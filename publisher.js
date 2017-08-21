@@ -17,36 +17,18 @@ const headers = {
 
 module.exports = {
   async publish () {
-  	try {
-  		const cmkdata = await cmkservice.getCoinPrice()
-  		const bxdata = await bxservice.getCoinPrice()
-  		this.publishToCryptoLover(bxdata, cmkdata)
+    try {
+      const cmkdata = await cmkservice.getCoinPrice()
+      const bxdata = await bxservice.getCoinPrice()
       this.publishToCryptoMoneyClub(bxdata, cmkdata)
-      this.publishToOMSLover(bxdata, cmkdata)
-  	} catch (err) {
-  		console.log(err)
-  	}
+    } catch (err) {
+      console.log(err)
+    }
   },
 
   async publishToCryptoMoneyClub (bxdata, cmkdata) {
     let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata)
-
-    const options = {
-      'url': config.LINE_NOTIFY_API_ENDPOINT,
-      'headers': headers,
-      'auth': {
-        'bearer': LINENotifyToken_CryptoMoneyClub
-      },
-      'form': {
-        'message': message
-      }
-    }
-
-    try {
-      await httpservice.post(options)
-    } catch (err) {
-      console.log(err)
-    }
+    console.log(message)
   },
 
   async publishToOMSLover (bxdata, cmkdata) {
@@ -71,23 +53,23 @@ module.exports = {
   },
 
   async publishToCryptoLover (bxdata, cmkdata) {
-  	let message = ms_generator.cryptoLoverMessage(bxdata, cmkdata)
+    let message = ms_generator.cryptoLoverMessage(bxdata, cmkdata)
 
-  	const options = {
-  		'url': config.LINE_NOTIFY_API_ENDPOINT,
-  		'headers': headers,
-  		'auth': {
-  			'bearer': LINENotifyToken_CryptoLover
-  		},
-  		'form': {
-  			'message': message
-  		}
-  	}
+    const options = {
+      'url': config.LINE_NOTIFY_API_ENDPOINT,
+      'headers': headers,
+      'auth': {
+        'bearer': LINENotifyToken_CryptoLover
+      },
+      'form': {
+        'message': message
+      }
+    }
 
-  	try {
-  		await httpservice.post(options)
-  	} catch (err) {
-  		console.log(err)
-  	}
+    try {
+      await httpservice.post(options)
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const config = require('./config')
 const app = express()
 const publisher = require('./publisher')
-var cronJob = require('cron').CronJob;
+var cronJob = require('cron').CronJob
 
 app.set('port', (process.env.PORT || config.PORT))
 
@@ -25,14 +25,14 @@ app.listen(app.get('port'), () => {
   console.log(`Running Crypty on port : ${app.get('port')}`)
 
   var cryptoJob = new cronJob({
-    cronTime: '0 */20 * * * *',
-    onTick: function() {
+    cronTime: '*/15 * * * * *',
+    onTick: function () {
       // Publish every 20 min
-      publisher.publish();
+      publisher.publish()
     },
     start: false,
     timeZone: 'Asia/Bangkok'
-  });
+  })
 
-  cryptoJob.start();
+  cryptoJob.start()
 })
