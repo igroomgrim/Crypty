@@ -1,6 +1,6 @@
 'use strict'
 
-const splitter = '================\n'
+const splitter = '=======================\n'
 const smileyFace = '≧◡≦'
 const usd_thb = 33.27
 
@@ -30,7 +30,7 @@ module.exports = {
     smileyFace
   },
 
-  cryptoMoneyClubMessage (bxdata, cmkdata) {
+  cryptoMoneyClubMessage (bxdata, cmkdata, bfndata) {
     let omg = bxdata[0]
     let btc = bxdata[1]
     let eth = bxdata[2]
@@ -43,8 +43,15 @@ module.exports = {
     let zrx_thb = this.usdToTHB(zrx.price_usd)
     let cvc_thb = this.usdToTHB(cvc.price_usd)
 
-    return `\n✿CryptoMoneyClub✿\n` +
-    `1 OMG  : ${omg.last_price} THB\n` +
+    let bfn_omg_thb = this.usdToTHB(bfndata.last_price) 
+
+    let d = new Date();
+    let n = d.toLocaleTimeString();
+
+    return `\n===== ${n} =====\n` +
+    `1 OMG  : ${omg.last_price} THB [BX]\n` +
+    `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
+    `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 CVC  : ${cvc.price_usd} $\n` +
     `1 CVC  : ${cvc_thb} THB\n` +
     `1 TENX : ${pay.price_usd} $\n` +

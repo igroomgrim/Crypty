@@ -3,6 +3,7 @@
 const config = require('./config')
 const bxservice = require('./bxservice')
 const cmkservice = require('./cmkservice')
+const bfnservice = require('./bfnservice')
 const httpservice = require('./httpservice')
 const ms_generator = require('./message_generator')
 
@@ -20,14 +21,15 @@ module.exports = {
     try {
       const cmkdata = await cmkservice.getCoinPrice()
       const bxdata = await bxservice.getCoinPrice()
-      this.publishToCryptoMoneyClub(bxdata, cmkdata)
+      const bfndata = await bfnservice.getCoinPrice()
+      this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
     } catch (err) {
       console.log(err)
     }
   },
 
-  async publishToCryptoMoneyClub (bxdata, cmkdata) {
-    let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata)
+  async publishToCryptoMoneyClub (bxdata, cmkdata, bfndata) {
+    let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata, bfndata)
     console.log(message)
   },
 
