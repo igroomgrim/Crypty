@@ -3,6 +3,7 @@
 const config = require('./config')
 const bxservice = require('./bxservice')
 const cmkservice = require('./cmkservice')
+const bfnservice = require('./bfnservice')
 const httpservice = require('./httpservice')
 const ms_generator = require('./message_generator')
 
@@ -17,36 +18,19 @@ const headers = {
 
 module.exports = {
   async publish () {
-  	try {
-  		const cmkdata = await cmkservice.getCoinPrice()
-  		const bxdata = await bxservice.getCoinPrice()
-  		this.publishToCryptoLover(bxdata, cmkdata)
-      this.publishToCryptoMoneyClub(bxdata, cmkdata)
-      this.publishToOMSLover(bxdata, cmkdata)
-  	} catch (err) {
-  		console.log(err)
-  	}
-  },
-
-  async publishToCryptoMoneyClub (bxdata, cmkdata) {
-    let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata)
-
-    const options = {
-      'url': config.LINE_NOTIFY_API_ENDPOINT,
-      'headers': headers,
-      'auth': {
-        'bearer': LINENotifyToken_CryptoMoneyClub
-      },
-      'form': {
-        'message': message
-      }
-    }
-
     try {
-      await httpservice.post(options)
+      const cmkdata = await cmkservice.getCoinPrice()
+      const bxdata = await bxservice.getCoinPrice()
+      const bfndata = await bfnservice.getCoinPrice()
+      this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
     } catch (err) {
       console.log(err)
     }
+  },
+
+  async publishToCryptoMoneyClub (bxdata, cmkdata, bfndata) {
+    let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata, bfndata)
+    console.log(message)
   },
 
   async publishToOMSLover (bxdata, cmkdata) {
@@ -71,23 +55,23 @@ module.exports = {
   },
 
   async publishToCryptoLover (bxdata, cmkdata) {
-  	let message = ms_generator.cryptoLoverMessage(bxdata, cmkdata)
+    let message = ms_generator.cryptoLoverMessage(bxdata, cmkdata)
 
-  	const options = {
-  		'url': config.LINE_NOTIFY_API_ENDPOINT,
-  		'headers': headers,
-  		'auth': {
-  			'bearer': LINENotifyToken_CryptoLover
-  		},
-  		'form': {
-  			'message': message
-  		}
-  	}
+    const options = {
+      'url': config.LINE_NOTIFY_API_ENDPOINT,
+      'headers': headers,
+      'auth': {
+        'bearer': LINENotifyToken_CryptoLover
+      },
+      'form': {
+        'message': message
+      }
+    }
 
-  	try {
-  		await httpservice.post(options)
-  	} catch (err) {
-  		console.log(err)
-  	}
+    try {
+      await httpservice.post(options)
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
