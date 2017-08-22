@@ -36,8 +36,8 @@ module.exports = {
     let eth = bxdata[2]
 
     let pay = cmkdata[2]
-    let zrx = cmkdata[3]
-    let cvc = cmkdata[4]
+    let cvc = cmkdata[3]
+    let zrx = cmkdata[4]
 
     let pay_thb = this.usdToTHB(pay.price_usd)
     let zrx_thb = this.usdToTHB(zrx.price_usd)
