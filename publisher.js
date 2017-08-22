@@ -32,7 +32,22 @@ module.exports = {
 
   async publishToCryptoMoneyClub (bxdata, cmkdata, bfndata) {
     let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata, bfndata)
-    console.log(message)
+    const options = {
+      'url': config.LINE_NOTIFY_API_ENDPOINT,
+      'headers': headers,
+      'auth': {
+        'bearer': LINENotifyToken_CryptoMoneyClub
+      },
+      'form': {
+        'message': message
+      }
+    }
+
+    try {
+      await httpservice.post(options)
+    } catch (err) {
+      console.log(err)
+    }
   },
 
   async publishToOMSLover (bxdata, cmkdata) {
