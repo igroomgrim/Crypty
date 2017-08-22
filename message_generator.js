@@ -14,8 +14,8 @@ module.exports = {
     let btc = bxdata[1]
     let eth = bxdata[2]
 
-    let sigt = cmkdata[5]
-    let dash = cmkdata[0]
+    let dash = cmkdata[1]
+    let sigt = cmkdata[4]
 
     return `✿CryptoLover✿\n` +
     `1 OMG : ${omg.last_price} THB\n` +
@@ -35,18 +35,18 @@ module.exports = {
     let btc = bxdata[1]
     let eth = bxdata[2]
 
-    let pay = cmkdata[2]
-    let cvc = cmkdata[3]
-    let zrx = cmkdata[4]
+    let cvc = cmkdata[0]
+    let pay = cmkdata[3]
+    let zrx = cmkdata[5]
 
     let pay_thb = this.usdToTHB(pay.price_usd)
     let zrx_thb = this.usdToTHB(zrx.price_usd)
     let cvc_thb = this.usdToTHB(cvc.price_usd)
 
-    let bfn_omg_thb = this.usdToTHB(bfndata.last_price) 
+    let bfn_omg_thb = this.usdToTHB(bfndata.last_price)
 
-    let d = new Date();
-    let n = d.toLocaleTimeString();
+    let d = new Date()
+    let n = d.toLocaleTimeString()
 
     return `\n===== ${n} =====\n` +
     `1 OMG  : ${omg.last_price} THB [BX]\n` +
@@ -66,7 +66,7 @@ module.exports = {
     let bx_btc = bxdata[1]
     let bx_eth = bxdata[2]
 
-    let cmk_omg = cmkdata[1]
+    let cmk_omg = cmkdata[2]
     let cmk_omg_thb = this.usdToTHB(cmk_omg.price_usd)
 
     return `✿OMG✿\n` +

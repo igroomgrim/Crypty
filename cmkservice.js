@@ -2,6 +2,7 @@
 
 const config = require('./config')
 const httpservice = require('./httpservice')
+const _ = require('underscore')
 
 const OMGPairID = 'omisego'
 const SIGTPairID = 'signatum'
@@ -12,10 +13,12 @@ const PAYPairID = 'tenx'
 
 module.exports = {
   compress (cmkData) {
-    var filterPairIDs = [OMGPairID, SIGTPairID, DASHPairID, ZRXPairID, CVCPairID, PAYPairID]
-    return cmkData.filter(function (item) {
+    var filterPairIDs = [CVCPairID, DASHPairID, OMGPairID, PAYPairID, SIGTPairID, ZRXPairID ]
+    var filteredData = cmkData.filter(function (item) {
       return filterPairIDs.indexOf(item.id) > -1
     })
+
+    return _.sortBy(filteredData, 'symbol')
   },
 
   async getCoinPrice () {
