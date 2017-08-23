@@ -1,6 +1,6 @@
 'use strict'
 
-const splitter = '=======================\n'
+const splitter = '====================\n'
 const smileyFace = '≧◡≦'
 const usd_thb = 33.27
 
@@ -79,5 +79,31 @@ module.exports = {
     `1 OMG : ${cmk_omg.price_usd} $\n` +
     `1 OMG : ${cmk_omg_thb} THB\n` +
     smileyFace
+  },
+
+  cryptoInvesterMessage (bxdata, cmkdata, bfndata) {
+    let omg = bxdata[0]
+    let btc = bxdata[1]
+    let eth = bxdata[2]
+
+    let cvc = cmkdata[0]
+    let pay = cmkdata[3]
+    let zrx = cmkdata[5]
+
+    let pay_thb = this.usdToTHB(pay.price_usd)
+    let zrx_thb = this.usdToTHB(zrx.price_usd)
+    let cvc_thb = this.usdToTHB(cvc.price_usd)
+
+    let bfn_omg_thb = this.usdToTHB(bfndata.last_price)
+
+    let d = new Date()
+    let n = d.toLocaleTimeString()
+
+    return `✿CryptoInvester✿\n` +
+    `1 OMG  : ${omg.last_price} THB [BX]\n` +
+    `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
+    `1 ETH  : ${eth.last_price} THB [BX]\n` +
+    `1 BTC  : ${btc.last_price} THB [BX]\n` +
+    splitter
   }
 }

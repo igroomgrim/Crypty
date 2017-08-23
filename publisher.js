@@ -10,6 +10,7 @@ const ms_generator = require('./message_generator')
 const LINENotifyToken_CryptoLover = process.env.LINENotifyToken_CryptoLover
 const LINENotifyToken_OMSLover = process.env.LINENotifyToken_OMSLover
 const LINENotifyToken_CryptoMoneyClub = process.env.LINENotifyToken_CryptoMoneyClub
+const LINENotifyToken_CryptoInvester = process.env.LINENotifyToken_CryptoInvester
 
 const headers = {
   'User-Agent': 'AzukiChan/0.0.1',
@@ -25,6 +26,7 @@ module.exports = {
       this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
       this.publishToOMSLover(bxdata, cmkdata)
       this.publishToCryptoLover(bxdata, cmkdata)
+      this.publishToCryptoInvester(bxdata, cmkdata)
     } catch (err) {
       console.log(err)
     }
@@ -79,6 +81,27 @@ module.exports = {
       'headers': headers,
       'auth': {
         'bearer': LINENotifyToken_CryptoLover
+      },
+      'form': {
+        'message': message
+      }
+    }
+
+    try {
+      await httpservice.post(options)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  async publishToCryptoInvester (bxdata, cmkdata) {
+    let message = ms_generator.cryptoInvesterMessage(bxdata, cmkdata)
+
+    const options = {
+      'url': config.LINE_NOTIFY_API_ENDPOINT,
+      'headers': headers,
+      'auth': {
+        'bearer': LINENotifyToken_CryptoInvester
       },
       'form': {
         'message': message
