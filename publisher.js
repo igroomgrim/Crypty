@@ -26,7 +26,7 @@ module.exports = {
       this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
       this.publishToOMSLover(bxdata, cmkdata)
       this.publishToCryptoLover(bxdata, cmkdata)
-      this.publishToCryptoInvester(bxdata, cmkdata)
+      this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
     } catch (err) {
       console.log(err)
     }
