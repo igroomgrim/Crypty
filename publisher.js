@@ -94,8 +94,8 @@ module.exports = {
     }
   },
 
-  async publishToCryptoInvester (bxdata, cmkdata) {
-    let message = ms_generator.cryptoInvesterMessage(bxdata, cmkdata)
+  async publishToCryptoInvester (bxdata, cmkdata, bfndata) {
+    let message = ms_generator.cryptoInvesterMessage(bxdata, cmkdata, bfndata)
 
     const options = {
       'url': config.LINE_NOTIFY_API_ENDPOINT,
