@@ -34,5 +34,16 @@ app.listen(app.get('port'), () => {
     timeZone: 'Asia/Bangkok'
   })
 
+  var cryptoHourJob = new cronJob({
+    cronTime: '0 */60 * * * *',
+    onTick: function () {
+      // Publish every 60 min
+      publisher.publishEveryHour()
+    },
+    start: false,
+    timeZone: 'Asia/Bangkok'
+  })
+
   cryptoJob.start()
+  cryptoHourJob.start()
 })
