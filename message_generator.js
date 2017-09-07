@@ -2,7 +2,7 @@
 
 const splitter = '=======================\n'
 const smileyFace = '≧◡≦'
-const usd_thb = 33.27
+const usd_thb = 33.20
 
 module.exports = {
   usdToTHB (amountInUSD) {
