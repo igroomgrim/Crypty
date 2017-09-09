@@ -26,17 +26,8 @@ module.exports = {
       this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
       this.publishToOMSLover(bxdata, cmkdata)
       this.publishToCryptoLover(bxdata, cmkdata)
-
-    } catch (err) {
-      console.log(err)
-    }
-  },
-
-  async publishEveryHour () {
-    try {
-      const bxdata = await bxservice.getCoinPrice()
-      const bfndata = await bfnservice.getCoinPrice()
       this.publishToCryptoInvester(bxdata, bfndata)
+
     } catch (err) {
       console.log(err)
     }
