@@ -55,6 +55,7 @@ module.exports = {
     return `\n===== ${n} =====\n` +
     `1 OMG  : ${omg.last_price} THB [BX]\n` +
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
+    `1 BTC  : ${btc.last_price} THB [BX]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 CVC  : ${cvc.price_usd} $\n` +
     `1 CVC  : ${cvc_thb} THB\n` +
@@ -63,7 +64,7 @@ module.exports = {
     `1 0x   : ${zrx.price_usd} $\n` +
     `1 0x   : ${zrx_thb} THB\n` +
     `1 NEO  : ${bfn_neo_usd} USD\n` +
-    splitter
+    smileyFace
   },
 
   omsLoverMessage (bxdata, cmkdata) {
@@ -99,6 +100,6 @@ module.exports = {
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 BTC  : ${btc.last_price} THB [BX]\n` +
-    splitter
+    smileyFace
   }
 }
