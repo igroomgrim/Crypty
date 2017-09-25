@@ -38,7 +38,7 @@ module.exports = {
     let cvc = cmkdata[0]
     let dash = cmkdata[1]
     let knc = cmkdata[2]
-    let omg = cmkdata[3]
+    let omg_cmk = cmkdata[3]
     let pay = cmkdata[4]
     let sigt = cmkdata[5]
     let zrx = cmkdata[6]
@@ -70,6 +70,7 @@ module.exports = {
     `1 0x   : ${zrx.price_usd} $\n` +
     `1 0x   : ${zrx_thb} THB\n` +
     `1 NEO  : ${bfn_neo_usd} USD\n` +
+    `1 KNC  : ${knc.price_usd} USD\n` +
     `1 KNC  : ${knc_thb} THB\n` +
     smileyFace
   },
@@ -110,6 +111,7 @@ module.exports = {
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 BTC  : ${btc.last_price} THB [BX]\n` +
+    `1 KNC  : ${knc.price_usd} USD\n` +
     `1 KNC  : ${knc_thb} THB\n` +
     smileyFace
   }
