@@ -26,7 +26,7 @@ module.exports = {
       this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
       this.publishToOMSLover(bxdata, cmkdata)
       this.publishToCryptoLover(bxdata, cmkdata)
-      this.publishToCryptoInvester(bxdata, bfndata)
+      this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
 
     } catch (err) {
       console.log(err)
@@ -95,8 +95,8 @@ module.exports = {
     }
   },
 
-  async publishToCryptoInvester (bxdata, bfndata) {
-    let message = ms_generator.cryptoInvesterMessage(bxdata, bfndata)
+  async publishToCryptoInvester (bxdata, cmkdata, bfndata) {
+    let message = ms_generator.cryptoInvesterMessage(bxdata, cmkdata, bfndata)
 
     const options = {
       'url': config.LINE_NOTIFY_API_ENDPOINT,
