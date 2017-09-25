@@ -15,7 +15,7 @@ module.exports = {
     let eth = bxdata[2]
 
     let dash = cmkdata[1]
-    let sigt = cmkdata[4]
+    let sigt = cmkdata[5]
 
     return `✿CryptoLover✿\n` +
     `1 OMG : ${omg.last_price} THB\n` +
@@ -36,12 +36,18 @@ module.exports = {
     let eth = bxdata[2]
 
     let cvc = cmkdata[0]
-    let pay = cmkdata[3]
-    let zrx = cmkdata[5]
+    let dash = cmkdata[1]
+    let knc = cmkdata[2]
+    let omg_cmk = cmkdata[3]
+    let pay = cmkdata[4]
+    let sigt = cmkdata[5]
+    let zrx = cmkdata[6]
+    
 
     let pay_thb = this.usdToTHB(pay.price_usd)
     let zrx_thb = this.usdToTHB(zrx.price_usd)
     let cvc_thb = this.usdToTHB(cvc.price_usd)
+    let knc_thb = this.usdToTHB(knc.price_usd)
 
     let neo_bfn = bfndata[0]
     let omg_bfn = bfndata[1]
@@ -63,8 +69,10 @@ module.exports = {
     `1 TENX : ${pay_thb} THB\n` +
     `1 0x   : ${zrx.price_usd} $\n` +
     `1 0x   : ${zrx_thb} THB\n` +
-    `1 NEO  : ${bfn_neo_usd} $\n` +
-    splitter
+    `1 NEO  : ${bfn_neo_usd} USD\n` +
+    `1 KNC  : ${knc.price_usd} USD\n` +
+    `1 KNC  : ${knc_thb} THB\n` +
+    smileyFace
   },
 
   omsLoverMessage (bxdata, cmkdata) {
@@ -72,7 +80,7 @@ module.exports = {
     let bx_btc = bxdata[1]
     let bx_eth = bxdata[2]
 
-    let cmk_omg = cmkdata[2]
+    let cmk_omg = cmkdata[3]
     let cmk_omg_thb = this.usdToTHB(cmk_omg.price_usd)
 
     return `✿OMG✿\n` +
@@ -87,10 +95,13 @@ module.exports = {
     smileyFace
   },
 
-  cryptoInvesterMessage (bxdata, bfndata) {
+  cryptoInvesterMessage (bxdata, cmkdata, bfndata) {
     let omg = bxdata[0]
     let btc = bxdata[1]
     let eth = bxdata[2]
+
+    let knc = cmkdata[2]
+    let knc_thb = this.usdToTHB(knc.price_usd)
 
     let omg_bfn = bfndata[1]
     let bfn_omg_thb = this.usdToTHB(omg_bfn.last_price)
@@ -100,6 +111,8 @@ module.exports = {
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 BTC  : ${btc.last_price} THB [BX]\n` +
-    splitter
+    `1 KNC  : ${knc.price_usd} USD\n` +
+    `1 KNC  : ${knc_thb} THB\n` +
+    smileyFace
   }
 }
