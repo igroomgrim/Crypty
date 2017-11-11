@@ -35,41 +35,17 @@ module.exports = {
     let btc = bxdata[1]
     let eth = bxdata[2]
 
-    let cvc = cmkdata[0]
-    let dash = cmkdata[1]
     let knc = cmkdata[2]
-    let omg_cmk = cmkdata[3]
-    let pay = cmkdata[4]
-    let sigt = cmkdata[5]
-    let zrx = cmkdata[6]
-    
-
-    let pay_thb = this.usdToTHB(pay.price_usd)
-    let zrx_thb = this.usdToTHB(zrx.price_usd)
-    let cvc_thb = this.usdToTHB(cvc.price_usd)
     let knc_thb = this.usdToTHB(knc.price_usd)
 
-    let neo_bfn = bfndata[0]
     let omg_bfn = bfndata[1]
-
-    let bfn_neo_usd = neo_bfn.last_price
     let bfn_omg_thb = this.usdToTHB(omg_bfn.last_price)
 
-    let d = new Date()
-    let n = d.toLocaleTimeString()
-
-    return `\n===== ${n} =====\n` +
+    return `✿GoToTheMOON✿\n` +
     `1 OMG  : ${omg.last_price} THB [BX]\n` +
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
-    `1 BTC  : ${btc.last_price} THB [BX]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
-    `1 CVC  : ${cvc.price_usd} $\n` +
-    `1 CVC  : ${cvc_thb} THB\n` +
-    `1 TENX : ${pay.price_usd} $\n` +
-    `1 TENX : ${pay_thb} THB\n` +
-    `1 0x   : ${zrx.price_usd} $\n` +
-    `1 0x   : ${zrx_thb} THB\n` +
-    `1 NEO  : ${bfn_neo_usd} USD\n` +
+    `1 BTC  : ${btc.last_price} THB [BX]\n` +
     `1 KNC  : ${knc.price_usd} USD\n` +
     `1 KNC  : ${knc_thb} THB\n` +
     smileyFace
