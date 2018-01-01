@@ -28,6 +28,7 @@ module.exports = {
       this.publishToOMSLover(bxdata, cmkdata)
       this.publishToCryptoLover(bxdata, cmkdata)
       this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
+      this.publishToSunnDokkWahh(bxdata, cmkdata, bfndata)
 
     } catch (err) {
       console.log(err)
