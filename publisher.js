@@ -24,10 +24,10 @@ module.exports = {
       const cmkdata = await cmkservice.getCoinPrice()
       const bxdata = await bxservice.getCoinPrice()
       const bfndata = await bfnservice.getCoinPrice()
-      this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
+      // this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
       this.publishToOMSLover(bxdata, cmkdata)
       this.publishToCryptoLover(bxdata, cmkdata)
-      this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
+      // this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
       this.publishToSunnDokkWahh(bxdata, cmkdata, bfndata)
 
     } catch (err) {
