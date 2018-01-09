@@ -25,7 +25,7 @@ module.exports = {
       const bxdata = await bxservice.getCoinPrice()
       const bfndata = await bfnservice.getCoinPrice()
       // this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
-      this.publishToOMSLover(bxdata, cmkdata)
+      this.publishToOMSLover(bxdata, cmkdata, bfndata)
       this.publishToCryptoLover(bxdata, cmkdata)
       // this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
       this.publishToSunnDokkWahh(bxdata, cmkdata, bfndata)
