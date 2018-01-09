@@ -5,16 +5,12 @@ const httpservice = require('./httpservice')
 const _ = require('underscore')
 
 const OMGPairID = 'omisego'
-const SIGTPairID = 'signatum'
-const DASHPairID = 'dash'
 const ZRXPairID = '0x'
-const CVCPairID = 'civic'
-const PAYPairID = 'tenx'
 const KNCPairID = 'kyber-network'
 
 module.exports = {
   compress (cmkData) {
-    var filterPairIDs = [CVCPairID, DASHPairID, OMGPairID, PAYPairID, SIGTPairID, ZRXPairID, KNCPairID ]
+    var filterPairIDs = [OMGPairID, ZRXPairID, KNCPairID]
     var filteredData = cmkData.filter(function (item) {
       return filterPairIDs.indexOf(item.id) > -1
     })

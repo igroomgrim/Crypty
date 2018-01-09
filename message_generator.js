@@ -14,19 +14,10 @@ module.exports = {
     let btc = bxdata[1]
     let eth = bxdata[2]
 
-    let dash = cmkdata[1]
-    let sigt = cmkdata[5]
-
     return `✿CryptoLover✿\n` +
     `1 OMG : ${omg.last_price} THB\n` +
     `1 ETH : ${eth.last_price} THB\n` +
     `1 BTC : ${btc.last_price} THB\n` +
-    splitter +
-    `1 SIGT : ${sigt.price_usd} $\n` +
-    `1 SIGT : ${sigt.price_btc} BTC\n` +
-    splitter +
-    `1 DASH : ${dash.price_usd} $\n` +
-    `1 DASH : ${dash.price_btc} BTC\n` +
     smileyFace
   },
 
@@ -56,7 +47,7 @@ module.exports = {
     let bx_btc = bxdata[1]
     let bx_eth = bxdata[2]
 
-    let cmk_omg = cmkdata[3]
+    let cmk_omg = cmkdata[0]
     let cmk_omg_thb = this.usdToTHB(cmk_omg.price_usd)
 
     return `✿OMG✿\n` +
