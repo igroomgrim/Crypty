@@ -55,8 +55,8 @@ module.exports = {
     }
   },
 
-  async publishToOMSLover (bxdata, cmkdata) {
-    let message = ms_generator.omsLoverMessage(bxdata, cmkdata)
+  async publishToOMSLover (bxdata, cmkdata, bfndata) {
+    let message = ms_generator.omsLoverMessage(bxdata, cmkdata, bfndata)
 
     const options = {
       'url': config.LINE_NOTIFY_API_ENDPOINT,
