@@ -6,20 +6,32 @@ const httpservice = require('./httpservice')
 const OMGPairID = '26'
 const BTCPairID = '1'
 const ETHPairID = '21'
+const LTCPairID = '30'
+const XRPPairID = '25'
 
 module.exports = {
   compress (bxData) {
     let omgPair = bxData[OMGPairID]
     let btcPair = bxData[BTCPairID]
     let ethPair = bxData[ETHPairID]
+    let ltcPair = bxData[LTCPairID]
+    let xrpPair = bxData[XRPPairID]
 
-    return [omgPair, btcPair, ethPair]
+    var coinPrice = {
+      omg: omgPair,
+      btc: btcPair,
+      eth: ethPair,
+      ltc: ltcPair,
+      xrp: xrpPair
+    }
+
+    return coinPrice
   },
 
   async getCoinPrice () {
-  	const options = {
-    	uri: config.BX_PUBLIC_API_ENDPOINT
-  	}
+    const options = {
+      uri: config.BX_PUBLIC_API_ENDPOINT
+    }
 
     try {
       const res = await httpservice.get(options)

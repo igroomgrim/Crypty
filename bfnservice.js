@@ -3,15 +3,21 @@
 const config = require('./config')
 const httpservice = require('./httpservice')
 
-const OMGUSD = "OMGUSD"
-const NEOUSD = "NEOUSD"
+const OMGUSD = 'OMGUSD'
+const NEOUSD = 'NEOUSD'
 
 module.exports = {
-	async getCoinPrice () {
-  	try {
+  async getCoinPrice () {
+    try {
       const neoData = await this.getNEOPrice()
       const omgData = await this.getOMGPrice()
-      return [neoData, omgData]
+
+      var coinPrice = {
+        neo: neoData,
+        omg: omgData
+      }
+
+      return coinPrice
     } catch (err) {
       console.log(err)
       return err
@@ -20,7 +26,7 @@ module.exports = {
 
   async getNEOPrice () {
     const options = {
-      uri: config.BFN_API_ENDPOINT + "pubticker/" + NEOUSD + "/"
+      uri: config.BFN_API_ENDPOINT + 'pubticker/' + NEOUSD + '/'
     }
 
     try {
@@ -34,7 +40,7 @@ module.exports = {
 
   async getOMGPrice () {
     const options = {
-      uri: config.BFN_API_ENDPOINT + "pubticker/" + OMGUSD + "/"
+      uri: config.BFN_API_ENDPOINT + 'pubticker/' + OMGUSD + '/'
     }
 
     try {

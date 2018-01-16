@@ -24,39 +24,17 @@ module.exports = {
       const cmkdata = await cmkservice.getCoinPrice()
       const bxdata = await bxservice.getCoinPrice()
       const bfndata = await bfnservice.getCoinPrice()
-      // this.publishToCryptoMoneyClub(bxdata, cmkdata, bfndata)
-      this.publishToOMSLover(bxdata, cmkdata, bfndata)
-      this.publishToCryptoLover(bxdata, cmkdata)
-      // this.publishToCryptoInvester(bxdata, cmkdata, bfndata)
+
       this.publishToSunnDokkWahh(bxdata, cmkdata, bfndata)
-
+      this.publishToOMSLover(bxdata, bfndata)
+      this.publishToCryptoLover(bxdata, cmkdata)
     } catch (err) {
       console.log(err)
     }
   },
 
-  async publishToCryptoMoneyClub (bxdata, cmkdata, bfndata) {
-    let message = ms_generator.cryptoMoneyClubMessage(bxdata, cmkdata, bfndata)
-    const options = {
-      'url': config.LINE_NOTIFY_API_ENDPOINT,
-      'headers': headers,
-      'auth': {
-        'bearer': LINENotifyToken_CryptoMoneyClub
-      },
-      'form': {
-        'message': message
-      }
-    }
-
-    try {
-      await httpservice.post(options)
-    } catch (err) {
-      console.log(err)
-    }
-  },
-
-  async publishToOMSLover (bxdata, cmkdata, bfndata) {
-    let message = ms_generator.omsLoverMessage(bxdata, cmkdata, bfndata)
+  async publishToOMSLover (bxdata, bfndata) {
+    let message = ms_generator.omsLoverMessage(bxdata, bfndata)
 
     const options = {
       'url': config.LINE_NOTIFY_API_ENDPOINT,
@@ -84,27 +62,6 @@ module.exports = {
       'headers': headers,
       'auth': {
         'bearer': LINENotifyToken_CryptoLover
-      },
-      'form': {
-        'message': message
-      }
-    }
-
-    try {
-      await httpservice.post(options)
-    } catch (err) {
-      console.log(err)
-    }
-  },
-
-  async publishToCryptoInvester (bxdata, cmkdata, bfndata) {
-    let message = ms_generator.cryptoInvesterMessage(bxdata, cmkdata, bfndata)
-
-    const options = {
-      'url': config.LINE_NOTIFY_API_ENDPOINT,
-      'headers': headers,
-      'auth': {
-        'bearer': LINENotifyToken_CryptoInvester
       },
       'form': {
         'message': message
