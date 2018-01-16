@@ -40,7 +40,7 @@ module.exports = {
     `1 ZRX : ${zrx_thb} THB\n` +
     `1 QSP : ${qsp_thb} THB\n` +
     smileyFace
-  }ม
+  },
 
   cryptoLoverMessage (bx, cmk) {
     let omg = bx.omg
