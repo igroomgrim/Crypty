@@ -18,6 +18,7 @@ module.exports = {
     let knc = cmk.knc
     let zrx = cmk.zrx
     let qsp = cmk.qsp
+    let elec = cmk.elec
 
     let knc_thb = this.usdToTHB(knc.price_usd)
     let zrx_thb = this.usdToTHB(zrx.price_usd)
@@ -39,6 +40,7 @@ module.exports = {
     `1 KNC  : ${knc_thb} THB\n` +
     `1 ZRX : ${zrx_thb} THB\n` +
     `1 QSP : ${qsp_thb} THB\n` +
+    `1 ELEC : ${elec.price_usd}$\n`
     smileyFace
   },
 
