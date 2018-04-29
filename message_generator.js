@@ -2,7 +2,7 @@
 
 const splitter = '==================\n'
 const smileyFace = '≧◡≦'
-const usd_thb = 32
+const usd_thb = 31
 
 module.exports = {
   usdToTHB (amountInUSD) {
@@ -14,6 +14,7 @@ module.exports = {
     let btc = bx.btc
     let eth = bx.eth
     let ltc = bx.ltc
+    let xrp = bx.xrp
 
     let knc = cmk.knc
     let zrx = cmk.zrx
@@ -34,6 +35,7 @@ module.exports = {
     `1 BTC  : ${btc.last_price} THB [BX]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 LTC  : ${ltc.last_price} THB [BX]\n` +
+    `1 XRP  : ${xrp.last_price} THB [BX]\n` +
     `1 OMG  : ${omg.last_price} THB [BX]\n` +
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
     `1 NEO : ${bfn_neo_thb} THB [Bitfinex]\n` +
