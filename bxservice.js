@@ -8,6 +8,7 @@ const BTCPairID = '1'
 const ETHPairID = '21'
 const LTCPairID = '30'
 const XRPPairID = '25'
+const XZCPairID = '29'
 
 module.exports = {
   compress (bxData) {
@@ -16,13 +17,15 @@ module.exports = {
     let ethPair = bxData[ETHPairID]
     let ltcPair = bxData[LTCPairID]
     let xrpPair = bxData[XRPPairID]
+    let xzcPair = bxData[XZCPairID]
 
     var coinPrice = {
       omg: omgPair,
       btc: btcPair,
       eth: ethPair,
       ltc: ltcPair,
-      xrp: xrpPair
+      xrp: xrpPair,
+      xzc: xzcPair
     }
 
     return coinPrice

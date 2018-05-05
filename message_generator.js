@@ -15,6 +15,7 @@ module.exports = {
     let eth = bx.eth
     let ltc = bx.ltc
     let xrp = bx.xrp
+    let xzc = bx.xzc
 
     let knc = cmk.knc
     let zrx = cmk.zrx
@@ -36,13 +37,14 @@ module.exports = {
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 LTC  : ${ltc.last_price} THB [BX]\n` +
     `1 XRP  : ${xrp.last_price} THB [BX]\n` +
+    `1 XZC  : ${xzc.last_price} THB [BX]\n` +
     `1 OMG  : ${omg.last_price} THB [BX]\n` +
     `1 OMG  : ${bfn_omg_thb} THB [Bitfinex]\n` +
     `1 NEO : ${bfn_neo_thb} THB [Bitfinex]\n` +
     `1 KNC  : ${knc_thb} THB\n` +
     `1 ZRX : ${zrx_thb} THB\n` +
     `1 QSP : ${qsp_thb} THB\n` +
-    `1 ELEC : ${elec.price_usd}$\n`
+    `1 ELEC : ${elec.price_usd}$\n` +
     smileyFace
   },
 
