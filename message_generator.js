@@ -31,8 +31,10 @@ module.exports = {
 
     let bfn_omg_thb = this.usdToTHB(omg_bfn.last_price)
     let bfn_neo_thb = this.usdToTHB(neo_bfn.last_price)
+    let bfn_btc_usd = bfn.btc.last_price
 
     return `✿✿\n` +
+    `1 BTC  : ${bfn_btc_usd} USD\n` +
     `1 BTC  : ${btc.last_price} THB [BX]\n` +
     `1 ETH  : ${eth.last_price} THB [BX]\n` +
     `1 LTC  : ${ltc.last_price} THB [BX]\n` +
