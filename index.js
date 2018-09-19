@@ -25,9 +25,9 @@ app.listen(app.get('port'), () => {
   console.log(`Running Crypty on port : ${app.get('port')}`)
 
   var cryptoJob = new cronJob({
-    cronTime: '0 0 */2 * * *',
+    cronTime: '0 0 */4 * * *',
     onTick: function () {
-      // Publish every 2 hour
+      // Publish every 4 hour
       publisher.publish()
     },
     start: false,
